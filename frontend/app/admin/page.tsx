@@ -22,7 +22,7 @@ export default function Admin() {
         loadBookings();
 
         const socket = io(
-            "http://localhost:5000"
+            "https://mini-courier-booking-system.onrender.com"
         );
 
         socket.on(
@@ -50,7 +50,7 @@ export default function Admin() {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/courier",
+                "https://mini-courier-booking-system.onrender.com/api/courier",
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -70,7 +70,7 @@ export default function Admin() {
     const approveBooking = async (id: string) => {
 
         await fetch(
-            `http://localhost:5000/api/courier/approve/${id}`,
+            `https://mini-courier-booking-system.onrender.com/api/courier/approve/${id}`,
             {
                 method: "PUT",
                 headers: {
@@ -85,7 +85,7 @@ export default function Admin() {
     const rejectBooking = async (id: string) => {
 
         await fetch(
-            `http://localhost:5000/api/courier/reject/${id}`,
+            `https://mini-courier-booking-system.onrender.com/api/courier/reject/${id}`,
             {
                 method: "PUT",
                 headers: {
@@ -103,7 +103,7 @@ export default function Admin() {
     ) => {
 
         await fetch(
-            `http://localhost:5000/api/courier/status/${id}`,
+            `https://mini-courier-booking-system.onrender.com/api/courier/status/${id}`,
             {
                 method: "PUT",
                 headers: {

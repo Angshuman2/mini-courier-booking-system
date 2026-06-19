@@ -52,7 +52,7 @@ export default function Home() {
       try {
 
         const response = await fetch(
-          "http://localhost:5000/api/courier",
+          "https://mini-courier-booking-system.onrender.com/api/courier",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -72,7 +72,7 @@ export default function Home() {
     fetchBookings();
 
     const socket = io(
-      "http://localhost:5000"
+      "https://mini-courier-booking-system.onrender.com"
     );
 
     socket.on(
@@ -99,7 +99,7 @@ export default function Home() {
     try {
 
       const response = await fetch(
-        "http://localhost:5000/api/courier/book",
+        "https://mini-courier-booking-system.onrender.com/api/courier/book",
         {
           method: "POST",
           headers: {
@@ -115,7 +115,7 @@ export default function Home() {
       }
 
       const refreshResponse = await fetch(
-        "http://localhost:5000/api/courier",
+        "https://mini-courier-booking-system.onrender.com/api/courier",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -153,7 +153,7 @@ export default function Home() {
   const handleTrackShipment = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/courier/track/${trackingId}`
+        `https://mini-courier-booking-system.onrender.com/api/courier/track/${trackingId}`
       );
 
       const data = await response.json();
