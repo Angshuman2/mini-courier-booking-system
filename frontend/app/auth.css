@@ -1,0 +1,131 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.auth-wrapper{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at top left,#2563eb,transparent 30%),
+    radial-gradient(circle at bottom right,#06b6d4,transparent 30%),
+    #0f172a;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    display:flex;
+    overflow:hidden;
+    border-radius:25px;
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+.left-panel{
+    flex:1;
+    padding:60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    color:white;
+}
+
+.left-panel h1{
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.left-panel p{
+    color:#cbd5e1;
+    line-height:1.8;
+    font-size:1.1rem;
+}
+
+.auth-card{
+    width:450px;
+    background:rgba(15,23,42,.9);
+    padding:50px;
+}
+
+.auth-card h2{
+    color:white;
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    color:#cbd5e1;
+    margin-bottom:8px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+}
+
+.input-group input:focus{
+    border:1px solid #38bdf8;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(45deg,#2563eb,#06b6d4);
+    color:white;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.bottom-text{
+    text-align:center;
+    margin-top:25px;
+    color:#cbd5e1;
+}
+
+.bottom-text a{
+    color:#38bdf8;
+    text-decoration:none;
+}
+
+@media(max-width:900px){
+
+    .container{
+        flex-direction:column;
+    }
+
+    .auth-card{
+        width:100%;
+    }
+
+    .left-panel{
+        text-align:center;
+        padding:40px;
+    }
+}

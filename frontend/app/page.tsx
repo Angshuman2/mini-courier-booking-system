@@ -1,0 +1,123 @@
+"use client";
+
+import { useState } from "react";
+import "./auth.css";
+
+export default function Login() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.token) {
+
+        if (data.user.role === "admin") {
+          alert(
+            "Please use the Admin Login page."
+          );
+          return;
+        }
+
+        localStorage.setItem("token", data.token);
+
+        localStorage.setItem(
+          "user",
+          JSON.stringify(data.user)
+        );
+
+        window.location.href = "/home";
+      } else {
+        alert(data.message);
+      }
+
+    } catch (error) {
+      console.error(error);
+    } finally {
+
+      setEmail("");
+      setPassword("");
+
+    }
+  };
+  return (
+    <div className="auth-wrapper">
+      <div className="container">
+        <div className="left-panel">
+          <h1>🚚 CourierFlow</h1>
+
+          <p>
+            Fast, secure and reliable courier management.
+            Track shipments, manage bookings and deliver with confidence.
+          </p>
+        </div>
+
+        <div className="auth-card">
+          <h2>Welcome Back</h2>
+
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="input-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <button type="submit">
+              Login
+            </button>
+          </form>
+
+          <p className="bottom-text">
+            Don't have an account?
+
+            <a href="/register">
+              Register
+            </a>
+          </p>
+
+          <p className="bottom-text">
+            Admin?
+
+            <a href="/admin-login">
+              Admin Login
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
