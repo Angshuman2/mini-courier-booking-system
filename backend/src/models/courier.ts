@@ -11,6 +11,12 @@ const courierSchema = new mongoose.Schema(
     packageType: { type: String, required: true },
     packageWeight: { type: Number, required: true },
 
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
     bookingId: {
       type: String,
       unique: true,
@@ -25,7 +31,7 @@ const courierSchema = new mongoose.Schema(
       type: String,
       default: "Pending",
     },
-    
+
   },
   {
     timestamps: true,
