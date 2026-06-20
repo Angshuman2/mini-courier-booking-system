@@ -7,6 +7,7 @@ import "./admin.css";
 export default function Admin() {
 
     const [bookings, setBookings] = useState([]);
+    const [selectedBooking, setSelectedBooking] = useState<any>(null);
 
     useEffect(() => {
 
@@ -198,7 +199,18 @@ export default function Admin() {
 
                             <tr key={booking._id}>
 
-                                <td>{booking.bookingId}</td>
+                                <td>
+                                    <span
+                                        style={{
+                                            color: "#38bdf8",
+                                            cursor: "pointer",
+                                            fontWeight: "bold"
+                                        }}
+                                        onClick={() => setSelectedBooking(booking)}
+                                    >
+                                        {booking.bookingId}
+                                    </span>
+                                </td>
 
                                 <td>
                                     {booking.trackingId || "-"}
@@ -296,6 +308,82 @@ export default function Admin() {
                 </table>
 
             </div>
+            {selectedBooking && (
+                <div className="modal-overlay">
+
+                    <div className="booking-details-modal">
+
+                        <h2>📦 Booking Details</h2>
+
+                        <div className="detail-grid">
+
+                            <div className="detail-card">
+                                <span>Booking ID</span>
+                                <p>{selectedBooking.bookingId}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Status</span>
+                                <p>{selectedBooking.status}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Sender Name</span>
+                                <p>{selectedBooking.senderName}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Sender Phone</span>
+                                <p>{selectedBooking.senderPhone}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Receiver Name</span>
+                                <p>{selectedBooking.receiverName}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Receiver Phone</span>
+                                <p>{selectedBooking.receiverPhone}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Package Type</span>
+                                <p>{selectedBooking.packageType}</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Package Weight</span>
+                                <p>{selectedBooking.packageWeight} g</p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Booking Date</span>
+                                <p>
+                                    {new Date(
+                                        selectedBooking.createdAt
+                                    ).toLocaleString()}
+                                </p>
+                            </div>
+
+                            <div className="detail-card">
+                                <span>Tracking ID</span>
+                                <p>{selectedBooking.trackingId || "Not Generated"}</p>
+                            </div>
+
+                        </div>
+
+                        <button
+                            className="close-modal-btn"
+                            onClick={() => setSelectedBooking(null)}
+                        >
+                            Close
+                        </button>
+
+                    </div>
+
+                </div>
+            )}
 
         </div>
     );

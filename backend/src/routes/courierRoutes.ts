@@ -169,7 +169,7 @@ router.get("/", protect, async (req: any, res) => {
 
     if (req.user.role === "admin") {
 
-        const couriers = await Courier.find();
+        const couriers = await Courier.find().populate("user", "email");
 
         return res.json(couriers);
 
