@@ -17,11 +17,6 @@ const courierSchema = new mongoose.Schema(
       required: true,
     },
 
-    customerEmail: {
-      type: String,
-      required: true,
-    },
-
     bookingId: {
       type: String,
       unique: true,
